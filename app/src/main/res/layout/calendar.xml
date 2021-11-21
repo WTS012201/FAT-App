@@ -97,7 +97,7 @@
     <TableLayout
         android:id="@+id/dayTable"
         android:layout_width="385dp"
-        android:layout_height="325dp"
+        android:layout_height="370dp"
         android:shrinkColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,51 +152,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="385dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" >
-
-        <Button
-            android:id="@+id/prev"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/day_button_normal"
-            android:text="Prev"
-            android:textColor="#000000"
-            android:textFontWeight="700"
-            android:textSize="10sp"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/tableRow"
-            app:layout_constraintEnd_toStartOf="@+id/addReminder"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textMonth"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/day_button_normal"
-            android:text="Next"
-            android:textColor="#000000"
-            android:textFontWeight="700"
-            android:textSize="10sp"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/tableRow"
-            app:layout_constraintEnd_toStartOf="@+id/addReminder"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textMonth"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-    </TableRow>
 </androidx.constraintlayout.widget.ConstraintLayout>

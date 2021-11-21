@@ -1,19 +1,14 @@
 package com.example.fatapp;
 
 import android.app.Activity;
-import android.text.format.Time;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.core.util.Pair;
-
-import java.lang.reflect.Array;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 public class Month {
     private static final int COLUMNS = 7;
     private static final int ROWS = 6;
@@ -21,8 +16,8 @@ public class Month {
     public int year;
     public int month;
 
-    public ArrayList<Day> days = new ArrayList<Day>();
-    public Day selected;
+    public ArrayList<CalendarButton> calendarButtons = new ArrayList<CalendarButton>();
+    public CalendarButton selected;
     private Activity calendar;
 
     public Month(Activity calendar, int year, int month){
@@ -37,16 +32,16 @@ public class Month {
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
         textMonth.setText(intMonthToString(month) + ",\n" + year);
 
-        for(int day = 1, offset = dayOffset; day <= days.size(); offset = 0){
+        for(int day = 1, offset = dayOffset; day <= calendarButtons.size(); offset = 0){
             TableRow tableRow = new TableRow(calendar);
             table.addView(tableRow);
             if(day == 1){   //  dummy buttons for the offset
                 for(int col = 0; col < offset; col++)
-                    tableRow.addView(new Day(calendar, -1));
+                    tableRow.addView(new CalendarButton(calendar, ""));
             }
             for(int col = offset; col < COLUMNS &&
-                    day <= days.size(); col++, day++){
-                Day button = new Day(calendar, days.get(day-1));
+                    day <= calendarButtons.size(); col++, day++){
+                CalendarButton button = new CalendarButton(calendar, calendarButtons.get(day-1));
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -56,7 +51,7 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
-                        textMonth.setText(intMonthToString(month) + " " + button.dayOfMonth + ",\n" + year);
+                        textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
                 if(!button.logged)    //  Show what is logged
@@ -65,15 +60,16 @@ public class Month {
                     button.setBackgroundResource(R.drawable.day_button_logged);
 
                 tableRow.addView(button);
-                days.set(day-1, button);
+                calendarButtons.set(day-1, button);
             }
         }
-        selected = days.get(0);
+        selected = calendarButtons.get(0);
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
     }
     public Month generateNewMonthView() {
         TableLayout table = (TableLayout) calendar.findViewById(R.id.dayTable);
+
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
         textMonth.setText(intMonthToString(month) + ",\n" + year);
 
@@ -83,11 +79,11 @@ public class Month {
             table.addView(tableRow);
             if(day == 1){   //  dummy buttons for the offset
                 for(int col = 0; col < offset; col++)
-                    tableRow.addView(new Day(calendar, -1));
+                    tableRow.addView(new CalendarButton(calendar, ""));
             }
             for(int col = offset; (col < COLUMNS) &&
                     (day <= getNumberOfDaysInMonth(month, year)); col++, day++){
-                Day button = new Day(calendar, day);
+                CalendarButton button = new CalendarButton(calendar, Integer.toString(day));
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -97,18 +93,20 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
-                        textMonth.setText(intMonthToString(month) + " " + button.dayOfMonth + ",\n" + year);
+                        textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
                 tableRow.addView(button);
-                days.add(button);
+                calendarButtons.add(button);
             }
         }
-        selected = days.get(0);
+        selected = calendarButtons.get(0);
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
     }
+    private static void generatePrevNext(){
 
+    }
     private static int getNumberOfDaysInMonth(int month, int year){
         switch(month){
             case 0:

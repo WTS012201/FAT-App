@@ -1,43 +1,41 @@
 package com.example.fatapp;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class Day extends androidx.appcompat.widget.AppCompatButton{
-    public int dayOfMonth;
+public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
+    public String label;
     private ArrayList<Reminder> reminders = new ArrayList<Reminder>();
     private ArrayList<Workout> workouts = new ArrayList<Workout>();
     public boolean logged;
 
-    public Day(Context context, int dayOfMonth) {
+    public CalendarButton(Context context, String label) {
         super(context);
         this.logged = false;
-        this.dayOfMonth = dayOfMonth;
-        if(dayOfMonth == -1) {
+        this.label = label;
+        if(label.equals("")) {
             setBackgroundResource(R.drawable.day_button_dummy);
             setEnabled(false);
         }
         else {
-            setText("" + dayOfMonth + "");
+            setText(label);
             setBackgroundResource(R.drawable.day_button_normal);
         }
         setScaleX(0.9f);
         setScaleY(0.9f);
         setTextSize(25.0f);
     }
-    public Day(Context context, Day day){
+    public CalendarButton(Context context, CalendarButton calendarButton){
         super(context);
-        this.logged = day.logged;
-        this.dayOfMonth = day.dayOfMonth;
-        if(day.dayOfMonth == -1) {
+        this.logged = calendarButton.logged;
+        this.label = calendarButton.label;
+        if(calendarButton.label.equals("")) {
             setBackgroundResource(R.drawable.day_button_dummy);
             setEnabled(false);
         }
         else {
-            setText("" + dayOfMonth + "");
+            setText(label);
             setBackgroundResource(R.drawable.day_button_normal);
         }
         setScaleX(0.9f);
