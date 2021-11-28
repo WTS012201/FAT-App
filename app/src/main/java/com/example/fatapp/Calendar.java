@@ -1,10 +1,13 @@
 package com.example.fatapp;
 
 import android.app.Activity;
+import android.text.Layout;
 import android.text.format.Time;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -45,6 +48,8 @@ public class Calendar {
             public void onClick(View view) {
                 currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                currentPage.selected.addWorkout(new Workout());
+                currentPage.generateLog();
             }
         });
 
@@ -54,8 +59,11 @@ public class Calendar {
             public void onClick(View view) {
                 currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                currentPage.selected.addReminder(new Reminder());
+                currentPage.generateLog();
             }
         });
+
         currentPage.generateNewMonthView();
         generateNextPrev();
         currentPage.selected.setBackgroundResource(R.drawable.day_button_normal);
@@ -107,6 +115,7 @@ public class Calendar {
         }else {
             currentPage = monthMap.get(pair).refresh(table);
         }
+        currentPage.generateLog();
         generateNextPrev();
         return currentPage;
     }
@@ -125,6 +134,7 @@ public class Calendar {
         }else {
             currentPage = monthMap.get(pair).refresh(table);
         }
+        currentPage.generateLog();
         generateNextPrev();
         return currentPage;
     }

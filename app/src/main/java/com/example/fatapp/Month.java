@@ -1,10 +1,17 @@
 package com.example.fatapp;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.preference.AndroidResources;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -51,6 +58,7 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
+                        generateLog();
                         textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
@@ -93,6 +101,7 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
+                        generateLog();
                         textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
@@ -104,8 +113,21 @@ public class Month {
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
     }
-    private static void generatePrevNext(){
-
+    public void generateLog(){
+        LinearLayout log = (LinearLayout) calendar.findViewById(R.id.logLayout);
+        View div = (View)calendar.findViewById(R.id.logDivider);
+        log.removeAllViews();
+        log.addView(div);
+        for(Workout w : selected.workouts) {
+            Button b = new Button(calendar);
+            b.setText("Workout");
+            log.addView(b);
+        }
+        for(Reminder r : selected.reminders) {
+            Button b = new Button(calendar);
+            b.setText("Reminder");
+            log.addView(b);
+        }
     }
     private static int getNumberOfDaysInMonth(int month, int year){
         switch(month){

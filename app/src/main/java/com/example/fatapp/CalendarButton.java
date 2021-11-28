@@ -1,13 +1,14 @@
 package com.example.fatapp;
 
 import android.content.Context;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
     public String label;
-    private ArrayList<Reminder> reminders = new ArrayList<Reminder>();
-    private ArrayList<Workout> workouts = new ArrayList<Workout>();
+    public ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+    public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public boolean logged;
 
     public CalendarButton(Context context, String label) {
@@ -30,6 +31,8 @@ public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
         super(context);
         this.logged = calendarButton.logged;
         this.label = calendarButton.label;
+        this.workouts = calendarButton.workouts;
+        this.reminders = calendarButton.reminders;
         if(calendarButton.label.equals("")) {
             setBackgroundResource(R.drawable.day_button_dummy);
             setEnabled(false);
