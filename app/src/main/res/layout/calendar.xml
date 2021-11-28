@@ -107,15 +107,11 @@
 
     <Button
         android:id="@+id/addWorkout"
-        android:layout_width="90dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/day_button_normal"
-        android:text="Add Workout"
-        android:textColor="#000000"
-        android:textFontWeight="700"
-        android:textSize="10sp"
-        app:backgroundTint="@color/white"
+        android:background="@drawable/workout_image"
+        app:backgroundTint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toStartOf="@+id/addReminder"
         app:layout_constraintHorizontal_bias="0.0"
@@ -125,20 +121,28 @@
 
     <Button
         android:id="@+id/addReminder"
-        android:layout_width="90dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/day_button_normal"
-        android:text="Add Reminder"
-        android:textColor="#000000"
-        android:textFontWeight="700"
-        android:textSize="10sp"
-        app:backgroundTint="@color/white"
+        android:background="@drawable/reminder_image"
+        app:backgroundTint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toEndOf="@+id/textMonth"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/addMeal"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/meal_plan"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
+        app:layout_constraintEnd_toStartOf="@+id/addReminder"
+        app:layout_constraintStart_toEndOf="@+id/addWorkout"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
     <View
         android:id="@+id/topDivider"
