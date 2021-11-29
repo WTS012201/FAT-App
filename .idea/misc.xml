@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/drawable/normal_button.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/layout/calendar.xml" value="0.5" />
+        <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/layout/dialog_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FAT-App/app/src/main/res/layout/temp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FATApp/app/src/main/res/drawable/button_pressed.xml" value="0.31927083333333334" />
@@ -30,12 +31,6 @@
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FATApp/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FATApp/app/src/main/res/layout/fragment_first.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lord Farquad/AndroidStudioProjects/FATApp/app/src/main/res/layout/settings_activity.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/example_items.xml" value="0.12962962962962962" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/fragment_home.xml" value="0.12962962962962962" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/fragment_total_calories.xml" value="0.1" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/meal_plan.xml" value="0.12962962962962962" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/mealplan.xml" value="0.5" />
-        <entry key="..\:/Users/light/AndroidStudioProjects/FAT-App/app/src/main/res/layout/nav_header.xml" value="0.1" />
       </map>
     </option>
   </component>

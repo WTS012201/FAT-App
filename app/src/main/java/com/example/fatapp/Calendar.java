@@ -1,6 +1,8 @@
 package com.example.fatapp;
 
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.text.Layout;
 import android.text.format.Time;
 import android.util.Pair;
@@ -12,13 +14,15 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Calendar {
+public class Calendar implements WorkoutDialog.OnInputListener{
 
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
+    public ArrayList<Workout> workouts = new ArrayList<Workout>();
     private Month currentPage;
     private Button addWorkout;
     private Button addReminder;
@@ -26,6 +30,7 @@ public class Calendar {
     private CalendarButton prev;
     private Activity calendar;
     public Time currentTime;
+    private static final String TAG = "Calendar";
 
     public Calendar(Activity calendar){
         this.calendar = calendar;
@@ -43,13 +48,17 @@ public class Calendar {
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
 
         addWorkout = calendar.findViewById(R.id.addWorkout);
+
         addWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
-                currentPage.selected.addWorkout(new Workout());
-                currentPage.generateLog();
+                WorkoutDialog workoutDialog = new WorkoutDialog();
+                workoutDialog.setCalendar(Calendar.this, workouts);
+                workoutDialog.show(calendar.getFragmentManager(), "WorkoutDialog");
+                //currentPage.selected.addWorkout(new Workout());
+                //currentPage.generateLog();
             }
         });
 
@@ -138,5 +147,15 @@ public class Calendar {
         generateNextPrev();
         return currentPage;
     }
-    //Select day block => changes log view to the selected day of the month
+
+    @Override
+    public void logWorkout(Workout workout) {
+        currentPage.selected.addWorkout(new Workout());
+        currentPage.generateLog();
+    }
+
+    @Override
+    public void keepWorkouts(ArrayList<Workout> worktouts) {
+        this.workouts = workouts;
+    }
 }
