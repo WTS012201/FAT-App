@@ -28,4 +28,9 @@
     <string name="su">Su</string>
     <string name="tu">Tu</string>
     <string name="mo">Mo</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <color name="blue">#00c3ff</color>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+    tools:shownIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mealplan"
+            android:icon="@drawable/ic_meal_plan_24"
+            android:title="Create Meal Plan" />
+        <item
+            android:id="@+id/nav_calories"
+            android:icon="@drawable/ic_total_calorie_24"
+            android:title="Total Calories" />
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_24"
+            android:title="Go Back Home" />
+
+     <item
+         android:id="@+id/nav_space"
+         android:title="Go Back Home" />
+         />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+        <item android:id="@+id/nav_share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="Share"/>
+
+            <item android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about_24"
+                android:title="About"/>
+        </menu>
+
+
+    </item>
+</menu>
