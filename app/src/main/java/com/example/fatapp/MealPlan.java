@@ -14,7 +14,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MealPlan extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener { //, CreateMeals.FragmentAListener, TotalCalories.FragmentBListener {
     private DrawerLayout drawer;
-
+//hello
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
