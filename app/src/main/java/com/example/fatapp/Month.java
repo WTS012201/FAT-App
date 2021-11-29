@@ -2,6 +2,7 @@ package com.example.fatapp;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -118,16 +119,30 @@ public class Month {
         View div = (View)calendar.findViewById(R.id.logDivider);
         log.removeAllViews();
         log.addView(div);
+
         for(Workout w : selected.workouts) {
-            Button b = new Button(calendar);
-            b.setText(w.name);
-            log.addView(b);
+            LayoutInflater layoutInflater = calendar.getLayoutInflater();
+            View content = layoutInflater.inflate(R.layout.remove, null, false);
+
+            Button remove = (Button)content.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selected.workouts.remove(w);
+                    log.removeView(content);
+                }
+            });
+            Button wContent = (Button)content.findViewById(R.id.content);
+            wContent.setText(w.name);
+            wContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            log.addView(content);
         }
-        for(Reminder r : selected.reminders) {
-            Button b = new Button(calendar);
-            b.setText("Reminder");
-            log.addView(b);
-        }
+
     }
     private static int getNumberOfDaysInMonth(int month, int year){
         switch(month){

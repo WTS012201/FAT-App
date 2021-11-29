@@ -1,5 +1,6 @@
 package com.example.fatapp;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -86,15 +87,26 @@ public class WorkoutDialog extends DialogFragment {
         LinearLayout workoutsView = (LinearLayout) view.findViewById(R.id.workouts_view);
         workoutsView.removeAllViews();
         for(Workout w : calendar.workouts){
-            Button text = new Button(getActivity());
-            text.setText(w.name);
-            text.setOnClickListener(new View.OnClickListener() {
+            LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+            View content = layoutInflater.inflate(R.layout.remove, null, false);
+
+            Button remove = (Button)content.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    calendar.workouts.remove(w);
+                    workoutsView.removeView(content);
+                }
+            });
+            Button wContent = (Button)content.findViewById(R.id.content);
+            wContent.setText(w.name);
+            wContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mOnInputListener.logWorkout(w);
                 }
             });
-            workoutsView.addView(text);
+            workoutsView.addView(content);
         }
     }
     public OnInputListener mOnInputListener;
