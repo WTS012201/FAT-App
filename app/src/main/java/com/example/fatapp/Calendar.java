@@ -23,6 +23,8 @@ public class Calendar implements WorkoutDialog.OnInputListener{
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
+    public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+
     private Month currentPage;
     private Button addWorkout;
     private Button addReminder;
@@ -55,7 +57,7 @@ public class Calendar implements WorkoutDialog.OnInputListener{
                 currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 WorkoutDialog workoutDialog = new WorkoutDialog();
-                workoutDialog.setCalendar(Calendar.this, workouts);
+                workoutDialog.setCalendar(Calendar.this);
                 workoutDialog.show(calendar.getFragmentManager(), "WorkoutDialog");
                 //currentPage.selected.addWorkout(new Workout());
                 //currentPage.generateLog();
@@ -150,12 +152,13 @@ public class Calendar implements WorkoutDialog.OnInputListener{
 
     @Override
     public void logWorkout(Workout workout) {
-        currentPage.selected.addWorkout(new Workout());
+        currentPage.selected.addWorkout(workout);
         currentPage.generateLog();
     }
 
     @Override
-    public void keepWorkouts(ArrayList<Workout> worktouts) {
-        this.workouts = workouts;
+    public void keep(Calendar cal) {
+        workouts = cal.workouts;
+        exercises = cal.exercises;
     }
 }

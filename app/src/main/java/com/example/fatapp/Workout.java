@@ -16,6 +16,9 @@ public class Workout {
         exercises.remove(idx);
     }
     public void setName(String name){
-        this.name =  name;
+        this.name = name;
+    }
+    public void setNotes(String notes){
+        this.notes = notes;
     }
 }
