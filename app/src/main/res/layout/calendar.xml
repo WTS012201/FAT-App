@@ -147,7 +147,7 @@
     <View
         android:id="@+id/topDivider"
         android:layout_width="409dp"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginBottom="4dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/addWorkout"
@@ -177,7 +177,7 @@
             <View
                 android:id="@+id/logDivider"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
         </LinearLayout>
     </ScrollView>

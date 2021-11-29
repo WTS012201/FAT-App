@@ -120,7 +120,7 @@ public class Month {
         log.addView(div);
         for(Workout w : selected.workouts) {
             Button b = new Button(calendar);
-            b.setText("Workout");
+            b.setText(w.name);
             log.addView(b);
         }
         for(Reminder r : selected.reminders) {
