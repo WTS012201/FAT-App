@@ -189,7 +189,7 @@ public class WorkoutDialog extends DialogFragment {
             wContent.setText(w.name);
             wContent.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view) {    //  Bug here
                     mOnInputListener.logWorkout(w);
                     calendar.currentPage.selected.logged = true;
                     dismiss();
