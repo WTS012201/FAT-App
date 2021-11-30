@@ -9,6 +9,7 @@ import android.inputmethodservice.ExtractEditText;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -47,6 +48,8 @@ public class WorkoutDialog extends DialogFragment {
         inputWorkout.removeAllViews();
         Workout newWorkout = new Workout();
 
+        ArrayList<View> exerciseLayouts = new ArrayList<View>();
+
         EditText nameEntry = new EditText(getActivity());
         nameEntry.setHint("Name");
         nameEntry.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -84,19 +87,17 @@ public class WorkoutDialog extends DialogFragment {
                 newWorkout.setNotes(timeEntry.getText().toString());
                 calendar.workouts.add(newWorkout);
                 inputWorkout.removeAllViews();
-                /*
-                System.out.println(newWorkout.exercises.size());
-                for(Exercise e : newWorkout.exercises)
-                    System.out.println(e.name);
-                */
-                LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-                View exerciseEntry;
-                for(Exercise e : newWorkout.exercises){
-                    exerciseEntry = layoutInflater.inflate(R.layout.add_exercise, null, false);
-                    EditText text = exerciseEntry.findViewById(R.id.exercise_name);
-                    e.setName(text.getText().toString());
-                    System.out.println(e.name);
+
+                for(View v : exerciseLayouts){
+                    LinearLayout setTable = (LinearLayout) v.findViewById(R.id.exercise_fields);
+                    EditText nameEntry = (EditText) v.findViewById(R.id.exercise_name);
+                    Exercise e = new Exercise();
+                    e.setName(nameEntry.getText().toString());
+
+                    newWorkout.exercises.add(e);
+
                 }
+
                 renderWorkouts(outer_view);
             }
         });
@@ -108,14 +109,13 @@ public class WorkoutDialog extends DialogFragment {
             public void onClick(View view) {
                 LayoutInflater layoutInflater = getActivity().getLayoutInflater();
                 View exerciseEntry = layoutInflater.inflate(R.layout.add_exercise, null, false);
-                Exercise newExercise = new Exercise();
                 LinearLayout setTable = (LinearLayout) exerciseEntry.findViewById(R.id.exercise_fields);
 
                 Button remove = (Button)exerciseEntry.findViewById(R.id.remove);
                 remove.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        newWorkout.exercises.remove(newExercise);
+                        exerciseLayouts.remove(exerciseEntry);
                         inputWorkout.removeView(exerciseEntry);
                     }
                 });
@@ -128,12 +128,20 @@ public class WorkoutDialog extends DialogFragment {
                         LinearLayout setEntry = (LinearLayout) exerciseField.findViewById(R.id.exercise_entry_field);
                         EditText set = exerciseField.findViewById(R.id.set_num);
                         //set.setText();
+                        Button removeSet = (Button)setEntry.findViewById(R.id.remove);
+                        removeSet.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                //newWorkout.exercises.remove(newExercise);
+                                setTable.removeView(setEntry);
+                            }
+                        });
                         ((ViewGroup)setEntry.getParent()).removeView(setEntry);
                         setTable.addView(setEntry);
                     }
                 });
 
-                newWorkout.exercises.add(newExercise);
+                exerciseLayouts.add(exerciseEntry);
                 inputWorkout.addView(exerciseEntry);
                 inputWorkout.removeView(bottom);
                 inputWorkout.addView(bottom);
