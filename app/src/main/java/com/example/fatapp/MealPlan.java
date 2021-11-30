@@ -42,6 +42,7 @@ public class MealPlan extends DialogFragment {
         buildRecyclerView(view);
         setInsertButton(view);
         onViewStateRestored(savedInstanceState);
+        renderMeals(view);
         return view;
     }
 
@@ -69,10 +70,16 @@ public class MealPlan extends DialogFragment {
             }
         });
     }
+    private void renderMeals(View view){
+        for(ExampleItem e : calendar.meals){
+            insertItem(e.getLine1(), e.getLine2());
+        }
+    }
 
     private void insertItem(String line1, String line2) {
         mExampleList.add(new ExampleItem(line1, line2));
         mAdapter.notifyItemInserted(mExampleList.size());
+        calendar.meals = mExampleList;
     }
     public interface OnInputListener{
         void logMeal(ExampleItem meal);
