@@ -25,19 +25,11 @@ public class mealplan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mealplan);
 
-        loadData();
         buildRecyclerView();
         setInsertButton();
 
-        Button buttonSave = findViewById(R.id.button_save);
-        buttonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-            }
-        });
+
     }
 
 
@@ -73,7 +65,6 @@ public class mealplan extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ExampleAdapter(mExampleList);
-
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -87,7 +78,6 @@ public class mealplan extends AppCompatActivity {
             public void onClick(View v) {
                 EditText line1 = findViewById(R.id.edittext_line_1);
                 EditText line2 = findViewById(R.id.edittext_line_2);
-
                 insertItem(line1.getText().toString(), line2.getText().toString());
             }
         });

@@ -39,10 +39,8 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         ExampleItem currentItem = mExampleList.get(position);
-
         holder.mTextViewLine1.setText(currentItem.getLine1());
         holder.mTextViewLine2.setText(currentItem.getLine2());
-
     }
 
     @Override
