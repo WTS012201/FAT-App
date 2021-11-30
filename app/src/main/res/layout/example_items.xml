@@ -7,11 +7,13 @@
 
     app:cardCornerRadius="4dp">
     <LinearLayout
+        android:id="@+id/example_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
             android:layout_width="60dp"
             android:layout_gravity="center"
+            android:id="@+id/remove"
             android:text="-"
             android:textSize="30dp"
             android:layout_height="match_parent"/>
