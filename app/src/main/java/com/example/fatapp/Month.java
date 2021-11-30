@@ -36,7 +36,7 @@ public class Month {
         this.calendar = calendar;
         this.dayOffset = (date.getDay() - 1 == -1) ? 6 : date.getDay() - 1;
     }
-    public Month refresh(TableLayout table){
+    public Month refresh(TableLayout table, Calendar cal){
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
         textMonth.setText(intMonthToString(month) + ",\n" + year);
 
@@ -59,7 +59,7 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
-                        generateLog();
+                        generateLog(cal);
                         textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
@@ -76,7 +76,7 @@ public class Month {
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
     }
-    public Month generateNewMonthView() {
+    public Month generateNewMonthView(Calendar cal) {
         TableLayout table = (TableLayout) calendar.findViewById(R.id.dayTable);
 
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
@@ -102,7 +102,7 @@ public class Month {
                             selected.setBackgroundResource(R.drawable.day_button_logged);
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
-                        generateLog();
+                        generateLog(cal);
                         textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
                     }
                 });
@@ -114,7 +114,7 @@ public class Month {
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
     }
-    public void generateLog(){
+    public void generateLog(Calendar cal){
         LinearLayout log = (LinearLayout) calendar.findViewById(R.id.logLayout);
         View div = (View)calendar.findViewById(R.id.logDivider);
         log.removeAllViews();
@@ -139,6 +139,12 @@ public class Month {
             wContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    for(Exercise e : w.exercises)
+                        System.out.println("TEST" + e.name);
+                    WorkoutDialog workoutDialog = new WorkoutDialog();
+                    workoutDialog.setCalendar(cal);
+                    workoutDialog.setWorkout(w);
+                    workoutDialog.show(cal.calendar.getFragmentManager(), "WorkoutDialog");
 
                 }
             });

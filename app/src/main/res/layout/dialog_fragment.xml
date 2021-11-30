@@ -30,7 +30,8 @@
             android:background="@color/black" />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="200dp"
+            android:id="@+id/scrollView">
 
             <LinearLayout
                 android:id="@+id/input_new_workout"

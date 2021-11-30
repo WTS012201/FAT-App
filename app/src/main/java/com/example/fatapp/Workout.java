@@ -9,10 +9,14 @@ public class Workout {
     public String notes;
     public int time;
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
-    //public ArrayList<View> exerciseLayouts = new ArrayList<View>();
-
     Workout(){
         this.name = "New Workout";
+    }
+    Workout(Workout workout){
+        this.name = workout.name;
+        this.notes = workout.notes;
+        this.time = workout.time;
+    this.exercises = workout.exercises;
     }
     public void addExercise() {
         exercises.add(new Exercise());

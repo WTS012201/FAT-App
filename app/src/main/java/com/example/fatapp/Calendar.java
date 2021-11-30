@@ -25,12 +25,12 @@ public class Calendar implements WorkoutDialog.OnInputListener{
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 
-    private Month currentPage;
+    public Month currentPage;
     private Button addWorkout;
     private Button addReminder;
     private CalendarButton next;
     private CalendarButton prev;
-    private Activity calendar;
+    public Activity calendar;
     public Time currentTime;
     private static final String TAG = "Calendar";
 
@@ -54,13 +54,10 @@ public class Calendar implements WorkoutDialog.OnInputListener{
         addWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 WorkoutDialog workoutDialog = new WorkoutDialog();
                 workoutDialog.setCalendar(Calendar.this);
                 workoutDialog.show(calendar.getFragmentManager(), "WorkoutDialog");
-                //currentPage.selected.addWorkout(new Workout());
-                //currentPage.generateLog();
             }
         });
 
@@ -71,11 +68,11 @@ public class Calendar implements WorkoutDialog.OnInputListener{
                 currentPage.selected.logged = true;
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 currentPage.selected.addReminder(new Reminder());
-                currentPage.generateLog();
+                currentPage.generateLog(Calendar.this);
             }
         });
 
-        currentPage.generateNewMonthView();
+        currentPage.generateNewMonthView(this);
         generateNextPrev();
         currentPage.selected.setBackgroundResource(R.drawable.day_button_normal);
         currentPage.selected = currentPage.calendarButtons.get(currentTime.monthDay - 1);
@@ -122,11 +119,11 @@ public class Calendar implements WorkoutDialog.OnInputListener{
 
         if (!monthMap.containsKey(pair)) {
             monthMap.put(pair, new Month(calendar, year, month));
-            currentPage = monthMap.get(pair).generateNewMonthView();
+            currentPage = monthMap.get(pair).generateNewMonthView(this);
         }else {
-            currentPage = monthMap.get(pair).refresh(table);
+            currentPage = monthMap.get(pair).refresh(table, this);
         }
-        currentPage.generateLog();
+        currentPage.generateLog(this);
         generateNextPrev();
         return currentPage;
     }
@@ -141,11 +138,11 @@ public class Calendar implements WorkoutDialog.OnInputListener{
 
         if (!monthMap.containsKey(pair)) {
             monthMap.put(pair, new Month(calendar, year, month));
-            currentPage = monthMap.get(pair).generateNewMonthView();
+            currentPage = monthMap.get(pair).generateNewMonthView(this);
         }else {
-            currentPage = monthMap.get(pair).refresh(table);
+            currentPage = monthMap.get(pair).refresh(table, this);
         }
-        currentPage.generateLog();
+        currentPage.generateLog(this);
         generateNextPrev();
         return currentPage;
     }
@@ -153,7 +150,7 @@ public class Calendar implements WorkoutDialog.OnInputListener{
     @Override
     public void logWorkout(Workout workout) {
         currentPage.selected.addWorkout(workout);
-        currentPage.generateLog();
+        currentPage.generateLog(this);
     }
 
     @Override
