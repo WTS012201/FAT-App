@@ -48,8 +48,6 @@ public class WorkoutDialog extends DialogFragment {
         inputWorkout.removeAllViews();
         Workout newWorkout = new Workout();
 
-        ArrayList<View> exerciseLayouts = new ArrayList<View>();
-
         EditText nameEntry = new EditText(getActivity());
         nameEntry.setHint("Name");
         nameEntry.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -88,14 +86,25 @@ public class WorkoutDialog extends DialogFragment {
                 calendar.workouts.add(newWorkout);
                 inputWorkout.removeAllViews();
 
-                for(View v : exerciseLayouts){
-                    LinearLayout setTable = (LinearLayout) v.findViewById(R.id.exercise_fields);
-                    EditText nameEntry = (EditText) v.findViewById(R.id.exercise_name);
-                    Exercise e = new Exercise();
+                for(Exercise e : newWorkout.exercises){
+                    EditText nameEntry = (EditText) e.exerciseLayout.findViewById(R.id.exercise_name);
                     e.setName(nameEntry.getText().toString());
 
-                    newWorkout.exercises.add(e);
+                    for(View v : e.setLayouts){
+                        EditText repEntry = (EditText) v.findViewById(R.id.rep);
+                        EditText weightEntry = (EditText) v.findViewById(R.id.weight);
+                        int rep, weight;
 
+                        if(repEntry.getText().toString().isEmpty())
+                            rep = 0;
+                        else
+                            rep = Integer.parseInt(repEntry.getText().toString());
+                        if(weightEntry.getText().toString().isEmpty())
+                            weight = 0;
+                        else
+                            weight = Integer.parseInt(weightEntry.getText().toString());
+                        e.addSet(rep, weight);
+                    }
                 }
 
                 renderWorkouts(outer_view);
@@ -110,12 +119,13 @@ public class WorkoutDialog extends DialogFragment {
                 LayoutInflater layoutInflater = getActivity().getLayoutInflater();
                 View exerciseEntry = layoutInflater.inflate(R.layout.add_exercise, null, false);
                 LinearLayout setTable = (LinearLayout) exerciseEntry.findViewById(R.id.exercise_fields);
+                Exercise newExercise = new Exercise();
 
                 Button remove = (Button)exerciseEntry.findViewById(R.id.remove);
                 remove.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        exerciseLayouts.remove(exerciseEntry);
+                        newWorkout.exercises.remove(newExercise);
                         inputWorkout.removeView(exerciseEntry);
                     }
                 });
@@ -126,22 +136,25 @@ public class WorkoutDialog extends DialogFragment {
                     public void onClick(View view) {
                         View exerciseField = layoutInflater.inflate(R.layout.exercise_field, null, false);
                         LinearLayout setEntry = (LinearLayout) exerciseField.findViewById(R.id.exercise_entry_field);
-                        EditText set = exerciseField.findViewById(R.id.set_num);
-                        //set.setText();
+                        EditText set = setEntry.findViewById(R.id.set);
+
                         Button removeSet = (Button)setEntry.findViewById(R.id.remove);
                         removeSet.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                //newWorkout.exercises.remove(newExercise);
+                                newExercise.setLayouts.remove(exerciseField);
                                 setTable.removeView(setEntry);
                             }
                         });
                         ((ViewGroup)setEntry.getParent()).removeView(setEntry);
+
+                        newExercise.setLayouts.add(setEntry);
                         setTable.addView(setEntry);
                     }
                 });
 
-                exerciseLayouts.add(exerciseEntry);
+                newExercise.exerciseLayout = exerciseEntry;
+                newWorkout.exercises.add(newExercise);
                 inputWorkout.addView(exerciseEntry);
                 inputWorkout.removeView(bottom);
                 inputWorkout.addView(bottom);

@@ -1,5 +1,7 @@
 package com.example.fatapp;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 public class Workout {
@@ -7,6 +9,8 @@ public class Workout {
     public String notes;
     public int time;
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+    //public ArrayList<View> exerciseLayouts = new ArrayList<View>();
+
     Workout(){
         this.name = "New Workout";
     }
