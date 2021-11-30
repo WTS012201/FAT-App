@@ -9,17 +9,18 @@
     <LinearLayout
         android:id="@+id/example_items"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
         <Button
-            android:layout_width="60dp"
+            android:layout_width="30dp"
             android:layout_gravity="center"
             android:id="@+id/remove"
             android:text="-"
             android:textSize="30dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="20dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="4dp">
 

@@ -4,54 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mealplan">
+    android:layout_gravity="center"
+    tools:context=".MealPlan">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="150dp"
-        android:background="@android:color/darker_gray" />
-
-    <EditText
-        android:id="@+id/edittext_line_1"
-        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginBottom="103dp"
-        android:inputType="text"
-        android:hint="Meal"
-        android:minHeight="48dp" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edittext_line_2"
-        android:layout_width="180dp"
-        android:inputType="number"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginBottom="53dp"
-        android:hint="Calories"
-        android:minHeight="48dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@android:color/darker_gray" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
 
+            <Button
+                android:id="@+id/button_insert"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                android:text="+"
+                android:textColor="@color/white" />
 
-    <Button
-        android:id="@+id/button_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/edittext_line_1"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="23dp"
-        android:layout_toEndOf="@id/edittext_line_1"
-        android:text="Log Meal"
-        android:background="@color/blue"
-        android:textColor="@color/white"
-        />
+            <EditText
+                android:id="@+id/edittext_line_1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Meal"
+                android:inputType="text" />
 
-
+            <EditText
+                android:id="@+id/edittext_line_2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Calories"
+                android:inputType="number" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

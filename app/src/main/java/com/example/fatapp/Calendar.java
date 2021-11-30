@@ -24,14 +24,17 @@ public class Calendar implements WorkoutDialog.OnInputListener{
         new HashMap<Pair<Integer, Integer>, Month>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
-
     public Month currentPage;
-    private Button addWorkout;
-    private Button addReminder;
-    private CalendarButton next;
-    private CalendarButton prev;
     public Activity calendar;
     public Time currentTime;
+
+    //  widgets
+    private Button addWorkout;
+    private Button addReminder;
+    private Button addMeal;
+    private CalendarButton next;
+    private CalendarButton prev;
+
     private static final String TAG = "Calendar";
 
     public Calendar(Activity calendar){
@@ -69,6 +72,16 @@ public class Calendar implements WorkoutDialog.OnInputListener{
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 currentPage.selected.addReminder(new Reminder());
                 currentPage.generateLog(Calendar.this);
+            }
+        });
+
+        addMeal = calendar.findViewById(R.id.addMeal);
+        addMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                MealPlan mealDialog = new MealPlan();
+                mealDialog.show(calendar.getFragmentManager(), "MealDialog");
             }
         });
 
