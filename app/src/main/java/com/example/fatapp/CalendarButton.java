@@ -9,6 +9,8 @@ public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
     public String label;
     public ArrayList<Reminder> reminders = new ArrayList<Reminder>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
+    public ArrayList<ExampleItem> meals = new ArrayList<ExampleItem>();
+
     public boolean logged;
 
     public CalendarButton(Context context, String label) {
@@ -33,6 +35,7 @@ public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
         this.label = calendarButton.label;
         this.workouts = calendarButton.workouts;
         this.reminders = calendarButton.reminders;
+        this.meals = calendarButton.meals;
         if(calendarButton.label.equals("")) {
             setBackgroundResource(R.drawable.day_button_dummy);
             setEnabled(false);
@@ -60,5 +63,11 @@ public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
     //RemoveWorkout
     public void removeWorkout(int workoutNum){
         workouts.remove(workoutNum);
+    }
+    public void addMeal(ExampleItem meal){
+        meals.add(meal);
+    }
+    public void removeMeal(ExampleItem meal){
+        meals.remove(meal);
     }
 }

@@ -1,8 +1,10 @@
 package com.example.fatapp;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +25,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MealPlan extends DialogFragment {
-    ArrayList<ExampleItem> mExampleList = new ArrayList<>();;
+    ArrayList<ExampleItem> mExampleList = new ArrayList<>();
+    private static final String TAG = "MealDialog";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Calendar calendar;
 
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+         @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.mealplan, container, false);
         buildRecyclerView(view);
@@ -66,5 +73,25 @@ public class MealPlan extends DialogFragment {
     private void insertItem(String line1, String line2) {
         mExampleList.add(new ExampleItem(line1, line2));
         mAdapter.notifyItemInserted(mExampleList.size());
+    }
+    public interface OnInputListener{
+        void logMeal(ExampleItem meal);
+        void keep(Calendar calendar);
+    }
+    public OnInputListener mOnInputListener;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            mOnInputListener = (MealPlan.OnInputListener) calendar;
+        }catch (ClassCastException e){
+            Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mOnInputListener.keep(calendar);
     }
 }

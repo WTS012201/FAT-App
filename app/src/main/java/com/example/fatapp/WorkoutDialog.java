@@ -43,6 +43,9 @@ public class WorkoutDialog extends DialogFragment {
 
     public interface OnInputListener{
         void logWorkout(Workout workout);
+
+        void logMeal(ExampleItem meal);
+
         void keep(Calendar calendar);
     }
     public void initNewWorkoutInput(View outer_view){

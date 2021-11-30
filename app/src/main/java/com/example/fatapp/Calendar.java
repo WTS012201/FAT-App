@@ -18,12 +18,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Calendar implements WorkoutDialog.OnInputListener{
+public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInputListener{
 
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+    public ArrayList<ExampleItem> meals = new ArrayList<ExampleItem>();
+
     public Month currentPage;
     public Activity calendar;
     public Time currentTime;
@@ -81,6 +83,7 @@ public class Calendar implements WorkoutDialog.OnInputListener{
             public void onClick(View view) {
                 currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 MealPlan mealDialog = new MealPlan();
+                mealDialog.setCalendar(Calendar.this);
                 mealDialog.show(calendar.getFragmentManager(), "MealDialog");
             }
         });
@@ -167,8 +170,15 @@ public class Calendar implements WorkoutDialog.OnInputListener{
     }
 
     @Override
+    public void logMeal(ExampleItem meal) {
+        currentPage.selected.meals.add(meal);
+        currentPage.generateLog(this);
+    }
+
+    @Override
     public void keep(Calendar cal) {
         workouts = cal.workouts;
         exercises = cal.exercises;
+        meals = cal.meals;
     }
 }
