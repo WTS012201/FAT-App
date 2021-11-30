@@ -6,45 +6,50 @@
     android:layout_margin="4dp"
 
     app:cardCornerRadius="4dp">
-    <LinearLayout
-        android:id="@+id/example_items"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
-        <Button
-            android:layout_width="30dp"
-            android:layout_gravity="center"
-            android:id="@+id/remove"
-            android:text="-"
-            android:textSize="30dp"
-            android:layout_height="20dp"/>
+
         <LinearLayout
+            android:id="@+id/example_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="4dp">
+            android:padding="5dp">
 
-
-            <TextView
-                android:id="@+id/textview_line1"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/remove"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:text="-"
+                android:textSize="30dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meals"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_margin="4dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textview_line1"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Meals"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textview_line_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Calories"
-                android:layout_below="@+id/textview_line1"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
+                <TextView
+                    android:id="@+id/textview_line_2"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview_line1"
+                    android:text="Calories"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/add"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:text="+"
+                android:textSize="20dp" />
         </LinearLayout>
-</LinearLayout>
-
 </androidx.cardview.widget.CardView>
