@@ -294,6 +294,7 @@ public class WorkoutDialog extends DialogFragment {
                     @Override
                     public void onClick(View view) {
                         View exerciseField = layoutInflater.inflate(R.layout.exercise_field, null, false);
+
                         LinearLayout setEntry = (LinearLayout) exerciseField.findViewById(R.id.exercise_entry_field);
                         EditText set = setEntry.findViewById(R.id.set);
 
@@ -320,18 +321,21 @@ public class WorkoutDialog extends DialogFragment {
             }
         });
         inputWorkout.addView(addExercise);
+
         System.out.println("BEFORE");
         for(Exercise e : workout.exercises){
+            if(e.exerciseLayout.getParent() != null)
+                ((ViewGroup)e.exerciseLayout.getParent()).removeView(e.exerciseLayout);
             inputWorkout.addView(e.exerciseLayout);
-            e.setName(nameEntry.getText().toString());
 
             LinearLayout setTable = (LinearLayout) e.exerciseLayout.findViewById(R.id.exercise_fields);
-            for(View v : e.setLayouts){
-                ((ViewGroup)v.getParent()).removeView(v);
+            for(View v : e.setLayouts) {
+                ((ViewGroup) v.getParent()).removeView(v);
                 setTable.addView(v);
             }
         }
         System.out.println("AFTER");
+
         inputWorkout.addView(bottom);
     }
 

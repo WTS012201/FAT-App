@@ -139,12 +139,11 @@ public class Month {
             wContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    for(Exercise e : w.exercises)
-                        System.out.println("TEST" + e.name);
                     WorkoutDialog workoutDialog = new WorkoutDialog();
                     workoutDialog.setCalendar(cal);
-                    workoutDialog.setWorkout(w);
+
                     workoutDialog.show(cal.calendar.getFragmentManager(), "WorkoutDialog");
+                    workoutDialog.setWorkout(w);
 
                 }
             });
