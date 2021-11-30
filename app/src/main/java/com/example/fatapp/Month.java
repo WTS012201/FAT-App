@@ -130,6 +130,8 @@ public class Month {
                 public void onClick(View view) {
                     selected.workouts.remove(w);
                     log.removeView(content);
+                    if(selected.reminders.size() == 0 && selected.workouts.size() == 0)
+                        selected.logged = false;
                 }
             });
             Button wContent = (Button)content.findViewById(R.id.content);
@@ -142,6 +144,7 @@ public class Month {
             });
             log.addView(content);
         }
+
 
     }
     private static int getNumberOfDaysInMonth(int month, int year){

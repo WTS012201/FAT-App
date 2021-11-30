@@ -43,18 +43,24 @@ public class WorkoutDialog extends DialogFragment {
         void keep(Calendar calendar);
     }
     public void initNewWorkoutInput(View outer_view){
-        LinearLayout input_workout = (LinearLayout) outer_view.findViewById(R.id.input_new_workout);
-        input_workout.removeAllViews();
+        LinearLayout inputWorkout = (LinearLayout) outer_view.findViewById(R.id.input_new_workout);
+        inputWorkout.removeAllViews();
+        Workout newWorkout = new Workout();
 
         EditText nameEntry = new EditText(getActivity());
         nameEntry.setHint("Name");
         nameEntry.setInputType(InputType.TYPE_CLASS_TEXT);
-        input_workout.addView(nameEntry);
+        inputWorkout.addView(nameEntry);
 
         EditText notesEntry = new EditText(getActivity());
         notesEntry.setHint("Notes");
         notesEntry.setInputType(InputType.TYPE_CLASS_TEXT);
-        input_workout.addView(notesEntry);
+        inputWorkout.addView(notesEntry);
+
+        EditText timeEntry = new EditText(getActivity());
+        timeEntry.setHint("Time");
+        timeEntry.setInputType(InputType.TYPE_CLASS_NUMBER);
+        inputWorkout.addView(timeEntry);
 
         LinearLayout bottom = new LinearLayout(getActivity());
         bottom.setGravity(Gravity.CENTER);
@@ -67,21 +73,76 @@ public class WorkoutDialog extends DialogFragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                input_workout.removeAllViews();
+                inputWorkout.removeAllViews();
             }
         });
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Workout workout = new Workout();
-                workout.setName(nameEntry.getText().toString());
-                workout.setNotes(notesEntry.getText().toString());
-                calendar.workouts.add(workout);
-                input_workout.removeAllViews();
+                newWorkout.setName(nameEntry.getText().toString());
+                newWorkout.setNotes(notesEntry.getText().toString());
+                newWorkout.setNotes(timeEntry.getText().toString());
+                calendar.workouts.add(newWorkout);
+                inputWorkout.removeAllViews();
+                /*
+                System.out.println(newWorkout.exercises.size());
+                for(Exercise e : newWorkout.exercises)
+                    System.out.println(e.name);
+                */
+                LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+                View exerciseEntry;
+                for(Exercise e : newWorkout.exercises){
+                    exerciseEntry = layoutInflater.inflate(R.layout.add_exercise, null, false);
+                    EditText text = exerciseEntry.findViewById(R.id.exercise_name);
+                    e.setName(text.getText().toString());
+                    System.out.println(e.name);
+                }
                 renderWorkouts(outer_view);
             }
         });
-        input_workout.addView(bottom);
+
+        Button addExercise = new Button(getActivity());
+        addExercise.setText("Add Exercise");
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater layoutInflater = getActivity().getLayoutInflater();
+                View exerciseEntry = layoutInflater.inflate(R.layout.add_exercise, null, false);
+                Exercise newExercise = new Exercise();
+                LinearLayout setTable = (LinearLayout) exerciseEntry.findViewById(R.id.exercise_fields);
+
+                Button remove = (Button)exerciseEntry.findViewById(R.id.remove);
+                remove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        newWorkout.exercises.remove(newExercise);
+                        inputWorkout.removeView(exerciseEntry);
+                    }
+                });
+
+                Button addSet = (Button)exerciseEntry.findViewById(R.id.add_set);
+                addSet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        View exerciseField = layoutInflater.inflate(R.layout.exercise_field, null, false);
+                        LinearLayout setEntry = (LinearLayout) exerciseField.findViewById(R.id.exercise_entry_field);
+                        EditText set = exerciseField.findViewById(R.id.set_num);
+                        //set.setText();
+                        ((ViewGroup)setEntry.getParent()).removeView(setEntry);
+                        setTable.addView(setEntry);
+                    }
+                });
+
+                newWorkout.exercises.add(newExercise);
+                inputWorkout.addView(exerciseEntry);
+                inputWorkout.removeView(bottom);
+                inputWorkout.addView(bottom);
+            }
+        });
+
+        inputWorkout.addView(addExercise);
+        inputWorkout.addView(bottom);
+
     }
     public void renderWorkouts(View view){
         LinearLayout workoutsView = (LinearLayout) view.findViewById(R.id.workouts_view);
@@ -104,6 +165,7 @@ public class WorkoutDialog extends DialogFragment {
                 @Override
                 public void onClick(View view) {
                     mOnInputListener.logWorkout(w);
+                    dismiss();
                 }
             });
             workoutsView.addView(content);
