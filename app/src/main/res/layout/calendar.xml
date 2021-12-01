@@ -105,56 +105,15 @@
         app:layout_constraintTop_toBottomOf="@+id/tableRow"
         app:layout_constraintVertical_bias="0.0"></TableLayout>
 
-    <Button
-        android:id="@+id/addWorkout"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/workout_image"
-        app:backgroundTint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow"
-        app:layout_constraintEnd_toStartOf="@+id/addReminder"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textMonth"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/addReminder"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/reminder_image"
-        app:backgroundTint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toEndOf="@+id/textMonth"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/addMeal"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/meal_plan"
-        app:backgroundTint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow"
-        app:layout_constraintEnd_toStartOf="@+id/addReminder"
-        app:layout_constraintStart_toEndOf="@+id/addWorkout"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
-
     <View
         android:id="@+id/topDivider"
         android:layout_width="409dp"
         android:layout_height="2dp"
-        android:layout_marginBottom="4dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/addWorkout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/logView"
@@ -181,4 +140,81 @@
                 android:background="?android:attr/listDivider" />
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="385dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/addReminder"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/reminder_image"
+                app:backgroundTint="@color/black" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+        <Button
+            android:id="@+id/addMeal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/meal_plan"
+            app:backgroundTint="@color/black"
+            tools:layout_editor_absoluteX="294dp"
+            tools:layout_editor_absoluteY="36dp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+        <Button
+            android:id="@+id/addWorkout"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/workout_image"
+            app:backgroundTint="@color/black"
+            tools:layout_editor_absoluteX="197dp"
+            tools:layout_editor_absoluteY="65dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="50dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

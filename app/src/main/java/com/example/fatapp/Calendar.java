@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInputListener{
-
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
