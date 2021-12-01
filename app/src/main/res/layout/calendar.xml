@@ -8,16 +8,16 @@
 
     <TextView
         android:id="@+id/textMonth"
-        android:layout_width="185dp"
-        android:layout_height="50dp"
+        android:layout_width="385dp"
+        android:layout_height="25dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.811" />
 
     <TableRow
         android:id="@+id/tableRow"
@@ -142,6 +142,7 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="385dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -149,11 +150,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/addReminder"
@@ -172,16 +174,17 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1">
-        <Button
-            android:id="@+id/addMeal"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/meal_plan"
-            app:backgroundTint="@color/black"
-            tools:layout_editor_absoluteX="294dp"
-            tools:layout_editor_absoluteY="36dp" />
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/addMeal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/meal_plan"
+                app:backgroundTint="@color/black"
+                tools:layout_editor_absoluteX="294dp"
+                tools:layout_editor_absoluteY="36dp" />
         </RelativeLayout>
 
         <View
@@ -193,16 +196,17 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1">
-        <Button
-            android:id="@+id/addWorkout"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/workout_image"
-            app:backgroundTint="@color/black"
-            tools:layout_editor_absoluteX="197dp"
-            tools:layout_editor_absoluteY="65dp" />
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/addWorkout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/workout_image"
+                app:backgroundTint="@color/black"
+                tools:layout_editor_absoluteX="197dp"
+                tools:layout_editor_absoluteY="65dp" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -217,4 +221,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="409dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginBottom="51dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/dayTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

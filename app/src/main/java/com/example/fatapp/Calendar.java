@@ -18,12 +18,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInputListener{
+public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInputListener
+    , ReminderDialog.OnInputListener{
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
     public ArrayList<ExampleItem> meals = new ArrayList<ExampleItem>();
+    public ArrayList<ExampleItem> reminders = new ArrayList<ExampleItem>();
 
     public Month currentPage;
     public Activity calendar;
@@ -69,10 +71,9 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
         addReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
-                currentPage.selected.addReminder(new Reminder());
-                currentPage.generateLog(Calendar.this);
-                currentPage.selected.logged = true;
+                ReminderDialog reminderDialog = new ReminderDialog();
+                reminderDialog.setCalendar(Calendar.this);
+                reminderDialog.show(calendar.getFragmentManager(), "ReminderDialog");
             }
         });
 
@@ -93,7 +94,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
         currentPage.selected = currentPage.calendarButtons.get(currentTime.monthDay - 1);
         currentPage.selected.setBackgroundResource(R.drawable.day_button_selected);
         textMonth.setText(currentPage.intMonthToString(currentPage.month) + " "
-                + currentPage.selected.label + ",\n" + currentPage.year);
+                + currentPage.selected.label + ", " + currentPage.year);
     }
     private void generateNextPrev(){
         TableLayout table = (TableLayout) calendar.findViewById(R.id.dayTable);
@@ -171,6 +172,13 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
     @Override
     public void logMeal(ExampleItem meal) {
         currentPage.selected.meals.add(meal);
+        currentPage.selected.logged = true;
+        currentPage.generateLog(this);
+    }
+
+    @Override
+    public void logReminder(ExampleItem reminder) {
+        currentPage.selected.reminders.add(reminder);
         currentPage.selected.logged = true;
         currentPage.generateLog(this);
     }

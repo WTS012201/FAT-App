@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
     public String label;
-    public ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+    public ArrayList<ExampleItem> reminders = new ArrayList<ExampleItem>();
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<ExampleItem> meals = new ArrayList<ExampleItem>();
 
@@ -49,25 +49,8 @@ public class CalendarButton extends androidx.appcompat.widget.AppCompatButton{
         setTextSize(25.0f);
     }
     //AddReminder
-    public void addReminder(Reminder reminder){
-        reminders.add(reminder);
-    }
-    //RemoveReminder
-    public void removeReminder(int reminderNum){
-        reminders.remove(reminderNum);
-    }
-    //AddWorkout
     public void addWorkout(Workout workout){
         workouts.add(workout);
     }
-    //RemoveWorkout
-    public void removeWorkout(int workoutNum){
-        workouts.remove(workoutNum);
-    }
-    public void addMeal(ExampleItem meal){
-        meals.add(meal);
-    }
-    public void removeMeal(ExampleItem meal){
-        meals.remove(meal);
-    }
+
 }

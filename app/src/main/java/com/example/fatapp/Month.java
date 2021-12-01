@@ -37,7 +37,7 @@ public class Month {
     }
     public Month refresh(TableLayout table, Calendar cal){
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
-        textMonth.setText(intMonthToString(month) + ",\n" + year);
+        textMonth.setText(intMonthToString(month) + ", " + year);
 
         for(int day = 1, offset = dayOffset; day <= calendarButtons.size(); offset = 0){
             TableRow tableRow = new TableRow(calendar);
@@ -59,7 +59,7 @@ public class Month {
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
                         generateLog(cal);
-                        textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
+                        textMonth.setText(intMonthToString(month) + " " + button.label + ", " + year);
                     }
                 });
                 if(!button.logged)    //  Show what is logged
@@ -79,7 +79,7 @@ public class Month {
         TableLayout table = (TableLayout) calendar.findViewById(R.id.dayTable);
 
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
-        textMonth.setText(intMonthToString(month) + ",\n" + year);
+        textMonth.setText(intMonthToString(month) + ", " + year);
 
         for(int day = 1, offset = dayOffset;
             day <= getNumberOfDaysInMonth(month, year); offset = 0){
@@ -102,7 +102,7 @@ public class Month {
                         button.setBackgroundResource(R.drawable.day_button_selected);
                         selected = button;
                         generateLog(cal);
-                        textMonth.setText(intMonthToString(month) + " " + button.label + ",\n" + year);
+                        textMonth.setText(intMonthToString(month) + " " + button.label + ", " + year);
                     }
                 });
                 tableRow.addView(button);
