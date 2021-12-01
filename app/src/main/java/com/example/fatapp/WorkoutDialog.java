@@ -32,7 +32,7 @@ import org.w3c.dom.Text;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class WorkoutDialog extends DialogFragment {
+public class WorkoutDialog extends DialogFragment{
     private static final String TAG = "WorkoutDialog";
     private Calendar calendar;
     private Workout workout;
@@ -241,14 +241,20 @@ public class WorkoutDialog extends DialogFragment {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                calendar.currentPage.selected.workouts.remove(workout);
+                calendar.workouts.remove(workout);
+                //calendar.currentPage.selected.workouts.set(calendar.currentPage.selected.workouts.indexOf(workout), newWorkout);
                 newWorkout.setName(nameEntry.getText().toString());
                 newWorkout.setNotes(notesEntry.getText().toString());
                 if(timeEntry.getText().toString().isEmpty())
                     newWorkout.setTime(0);
                 else
                     newWorkout.setTime(Integer.parseInt(timeEntry.getText().toString()));
-                calendar.workouts.remove(workout);
+                //calendar.currentPage.selected.workouts.add(newWorkout);
                 calendar.workouts.add(newWorkout);
+                //calendar.workouts.set(calendar.workouts.indexOf(workout), newWorkout);
+
                 inputWorkout.removeAllViews();
                 for(Exercise e : newWorkout.exercises){
                     EditText nameEntry = (EditText) e.exerciseLayout.findViewById(R.id.exercise_name);
@@ -325,11 +331,18 @@ public class WorkoutDialog extends DialogFragment {
         });
         inputWorkout.addView(addExercise);
 
-        System.out.println("BEFORE");
         for(Exercise e : workout.exercises){
             if(e.exerciseLayout.getParent() != null)
                 ((ViewGroup)e.exerciseLayout.getParent()).removeView(e.exerciseLayout);
             inputWorkout.addView(e.exerciseLayout);
+            Button remove = (Button)e.exerciseLayout.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    newWorkout.exercises.remove(e);
+                    inputWorkout.removeView(e.exerciseLayout);
+                }
+            });
 
             LinearLayout setTable = (LinearLayout) e.exerciseLayout.findViewById(R.id.exercise_fields);
             for(View v : e.setLayouts) {
@@ -337,7 +350,6 @@ public class WorkoutDialog extends DialogFragment {
                 setTable.addView(v);
             }
         }
-        System.out.println("AFTER");
 
         inputWorkout.addView(bottom);
     }

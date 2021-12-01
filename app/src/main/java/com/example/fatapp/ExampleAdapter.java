@@ -13,11 +13,17 @@ import java.util.ArrayList;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
     private ArrayList<ExampleItem> mExampleList;
-
+    private MealPlan mealPlan;
+    public interface OnInputListener{
+        void addMeal(ExampleItem meal);
+    }
+    public void setMealPlan(MealPlan mealPlan){
+        this.mealPlan = mealPlan;
+    }
+    private OnInputListener mOnInputListener;
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextViewLine1;
         public TextView mTextViewLine2;
-
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
@@ -35,12 +41,21 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_items, parent, false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         Button remove = v.findViewById(R.id.remove);
+
+        mOnInputListener = (ExampleAdapter.OnInputListener) mealPlan;
+
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(evh.getAdapterPosition());
                 mExampleList.remove(evh.getAdapterPosition());
                 ExampleAdapter.super.notifyItemRemoved(evh.getAdapterPosition());
+            }
+        });
+        Button add = v.findViewById(R.id.add);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnInputListener.addMeal(mExampleList.get(evh.getAdapterPosition()));
             }
         });
         return evh;
@@ -52,12 +67,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.mTextViewLine2.setText(currentItem.getLine2());
 
     }
-
-    @Override
     public int getItemCount() {
         return mExampleList.size();
     }
-
 
 
 }

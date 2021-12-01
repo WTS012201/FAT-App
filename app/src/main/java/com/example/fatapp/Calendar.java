@@ -59,7 +59,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
         addWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                //currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 WorkoutDialog workoutDialog = new WorkoutDialog();
                 workoutDialog.setCalendar(Calendar.this);
                 workoutDialog.show(calendar.getFragmentManager(), "WorkoutDialog");
@@ -70,10 +70,10 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
         addReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentPage.selected.logged = true;
-                currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                //currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 currentPage.selected.addReminder(new Reminder());
                 currentPage.generateLog(Calendar.this);
+                currentPage.selected.logged = true;
             }
         });
 
@@ -81,7 +81,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
         addMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
+                //currentPage.selected.setBackgroundResource(R.drawable.day_button_logged);
                 MealPlan mealDialog = new MealPlan();
                 mealDialog.setCalendar(Calendar.this);
                 mealDialog.show(calendar.getFragmentManager(), "MealDialog");
@@ -172,6 +172,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
     @Override
     public void logMeal(ExampleItem meal) {
         currentPage.selected.meals.add(meal);
+        currentPage.selected.logged = true;
         currentPage.generateLog(this);
     }
 

@@ -24,7 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class MealPlan extends DialogFragment {
+public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputListener{
     ArrayList<ExampleItem> mExampleList = new ArrayList<>();
     private static final String TAG = "MealDialog";
     private RecyclerView mRecyclerView;
@@ -51,6 +51,7 @@ public class MealPlan extends DialogFragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new ExampleAdapter(mExampleList);
+        mAdapter.setMealPlan(this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -81,6 +82,12 @@ public class MealPlan extends DialogFragment {
         mAdapter.notifyItemInserted(mExampleList.size());
         calendar.meals = mExampleList;
     }
+
+    @Override
+    public void addMeal(ExampleItem meal) {
+        mOnInputListener.logMeal(meal);
+    }
+
     public interface OnInputListener{
         void logMeal(ExampleItem meal);
         void keep(Calendar calendar);
@@ -95,7 +102,6 @@ public class MealPlan extends DialogFragment {
             Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage());
         }
     }
-
     @Override
     public void onDetach() {
         super.onDetach();

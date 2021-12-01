@@ -27,7 +27,6 @@ public class Month {
     public ArrayList<CalendarButton> calendarButtons = new ArrayList<CalendarButton>();
     public CalendarButton selected;
     private Activity calendar;
-
     public Month(Activity calendar, int year, int month){
         Date date = new Date(year, month, 1);
 
@@ -120,6 +119,7 @@ public class Month {
         log.removeAllViews();
         log.addView(div);
 
+        System.out.println(selected.label);
         for(Workout w : selected.workouts) {
             LayoutInflater layoutInflater = calendar.getLayoutInflater();
             View content = layoutInflater.inflate(R.layout.remove, null, false);
@@ -130,7 +130,7 @@ public class Month {
                 public void onClick(View view) {
                     selected.workouts.remove(w);
                     log.removeView(content);
-                    if(selected.reminders.size() == 0 && selected.workouts.size() == 0)
+                    if(selected.reminders.size() == 0 && selected.workouts.size() == 0 && selected.meals.size() == 0)
                         selected.logged = false;
                 }
             });
@@ -138,21 +138,37 @@ public class Month {
             wContent.setText(w.name);
             wContent.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    for(Exercise e : w.exercises)
-                        System.out.println(e.name);
+                    public void onClick(View view) {
                     WorkoutDialog workoutDialog = new WorkoutDialog();
                     workoutDialog.setCalendar(cal);
-
-                    workoutDialog.show(cal.calendar.getFragmentManager(), "WorkoutDialog");
                     workoutDialog.setWorkout(w);
-
+                    workoutDialog.show(cal.calendar.getFragmentManager(), "WorkoutDialog");
                 }
             });
             log.addView(content);
         }
+        System.out.println("meals: " + selected.meals.size());
+        for(ExampleItem m : selected.meals) {
+            LayoutInflater layoutInflater = calendar.getLayoutInflater();
+            View content = layoutInflater.inflate(R.layout.remove_meal, null, false);
 
+            Button remove = (Button)content.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selected.meals.remove(m);
+                    log.removeView(content);
+                    if(selected.reminders.size() == 0 && selected.workouts.size() == 0 && selected.meals.size() == 0)
+                        selected.logged = false;
+                }
+            });
+            TextView t1 = (TextView)content.findViewById(R.id.textView1);
+            t1.setText(m.getLine1());
+            TextView t2 = (TextView)content.findViewById(R.id.textView2);
+            t2.setText(m.getLine2());
 
+            log.addView(content);
+        }
     }
     private static int getNumberOfDaysInMonth(int month, int year){
         switch(month){
