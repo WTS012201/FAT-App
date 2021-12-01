@@ -64,6 +64,10 @@ public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputLi
             public void onClick(View v) {
                 EditText line1 = view.findViewById(R.id.edittext_line_1);
                 EditText line2 = view.findViewById(R.id.edittext_line_2);
+                if(line1.getText().toString().isEmpty())
+                    return;
+                if(line2.getText().toString().isEmpty())
+                    return;
 
                 insertItem(" Meal: " + line1.getText().toString()," Calories: " + line2.getText().toString());
                 line1.setText("");
