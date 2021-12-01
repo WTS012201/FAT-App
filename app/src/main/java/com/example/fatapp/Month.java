@@ -39,7 +39,8 @@ public class Month {
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
         textMonth.setText(intMonthToString(month) + ", " + year);
 
-        for(int day = 1, offset = dayOffset; day <= calendarButtons.size(); offset = 0){
+        int count = 0;
+        for(int day = 1, offset = dayOffset; day <= calendarButtons.size(); offset = 0, count++){
             TableRow tableRow = new TableRow(calendar);
             table.addView(tableRow);
             if(day == 1){   //  dummy buttons for the offset
@@ -71,6 +72,12 @@ public class Month {
                 calendarButtons.set(day-1, button);
             }
         }
+        if(count == 5){
+            TableRow tableRow = new TableRow(calendar);
+            table.addView(tableRow);
+            for(int col = 0; col < COLUMNS; col++)
+                tableRow.addView(new CalendarButton(calendar, ""));
+        }
         selected = calendarButtons.get(0);
         selected.setBackgroundResource(R.drawable.day_button_selected);
         return this;
@@ -80,9 +87,9 @@ public class Month {
 
         TextView textMonth = (TextView)calendar.findViewById(R.id.textMonth);
         textMonth.setText(intMonthToString(month) + ", " + year);
-
+        int count = 0;
         for(int day = 1, offset = dayOffset;
-            day <= getNumberOfDaysInMonth(month, year); offset = 0){
+            day <= getNumberOfDaysInMonth(month, year); offset = 0, count++){
             TableRow tableRow = new TableRow(calendar);
             table.addView(tableRow);
             if(day == 1){   //  dummy buttons for the offset
@@ -108,6 +115,13 @@ public class Month {
                 tableRow.addView(button);
                 calendarButtons.add(button);
             }
+        }
+        System.out.println(count);
+        if(count == 5){
+            TableRow tableRow = new TableRow(calendar);
+            table.addView(tableRow);
+            for(int col = 0; col < COLUMNS; col++)
+                tableRow.addView(new CalendarButton(calendar, ""));
         }
         selected = calendarButtons.get(0);
         selected.setBackgroundResource(R.drawable.day_button_selected);
