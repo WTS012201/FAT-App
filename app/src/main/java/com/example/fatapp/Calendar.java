@@ -3,6 +3,7 @@ package com.example.fatapp;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.SharedPreferences;
 import android.text.Layout;
 import android.text.format.Time;
 import android.util.Pair;
@@ -14,6 +15,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +25,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
     , ReminderDialog.OnInputListener{
     private Map<Pair<Integer, Integer>, Month> monthMap =
         new HashMap<Pair<Integer, Integer>, Month>();
+    private SharedPreferences mPrefs;
     public ArrayList<Workout> workouts = new ArrayList<Workout>();
     public ArrayList<Exercise> exercises = new ArrayList<Exercise>();
     public ArrayList<ExampleItem> meals = new ArrayList<ExampleItem>();
@@ -41,6 +45,7 @@ public class Calendar implements WorkoutDialog.OnInputListener, MealPlan.OnInput
     private static final String TAG = "Calendar";
 
     public Calendar(Activity calendar){
+        this.mPrefs = calendar.getPreferences(calendar.MODE_PRIVATE);
         this.calendar = calendar;
         currentTime = new Time(Time.getCurrentTimezone());
         currentTime.setToNow();

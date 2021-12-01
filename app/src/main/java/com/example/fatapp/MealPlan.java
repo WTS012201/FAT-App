@@ -65,7 +65,7 @@ public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputLi
                 EditText line1 = view.findViewById(R.id.edittext_line_1);
                 EditText line2 = view.findViewById(R.id.edittext_line_2);
 
-                insertItem("Meal: " + line1.getText().toString(),"Calories: " + line2.getText().toString());
+                insertItem(" Meal: " + line1.getText().toString()," Calories: " + line2.getText().toString());
                 line1.setText("");
                 line2.setText("");
             }

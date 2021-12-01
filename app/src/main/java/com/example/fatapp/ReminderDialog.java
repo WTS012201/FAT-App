@@ -3,12 +3,14 @@ package com.example.fatapp;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +34,11 @@ public class ReminderDialog extends DialogFragment implements ReminderAdapter.On
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.mealplan, container, false);
+        EditText entryHour = (EditText) view.findViewById(R.id.edittext_line_1);
+        EditText entryMin = (EditText)  view.findViewById(R.id.edittext_line_2);
+        entryHour.setHint("Hour");
+        entryHour.setInputType(InputType.TYPE_CLASS_NUMBER);
+        entryMin.setHint("Minute");
         buildRecyclerView(view);
         setInsertButton(view);
         onViewStateRestored(savedInstanceState);
@@ -57,8 +64,22 @@ public class ReminderDialog extends DialogFragment implements ReminderAdapter.On
             public void onClick(View v) {
                 EditText line1 = view.findViewById(R.id.edittext_line_1);
                 EditText line2 = view.findViewById(R.id.edittext_line_2);
+                int hour = 0, min = 0;
 
-                insertItem("Hour: " + line1.getText().toString(),"Minute: " + line2.getText().toString());
+                if(!line1.getText().toString().isEmpty())
+                    hour = Integer.parseInt(line1.getText().toString());
+                else
+                    return;
+
+                if(!line2.getText().toString().isEmpty())
+                    min = Integer.parseInt(line2.getText().toString());
+                else
+                    return;
+
+                if((hour > 24 || hour < 0) || (min > 60 || min < 0))
+                    return;
+
+                insertItem(" Hour: " + Integer.toString(hour)," Minute: " + Integer.toString(min));
                 line1.setText("");
                 line2.setText("");
             }

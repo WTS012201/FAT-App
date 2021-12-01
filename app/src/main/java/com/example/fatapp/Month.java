@@ -147,7 +147,6 @@ public class Month {
             });
             log.addView(content);
         }
-        System.out.println("meals: " + selected.meals.size());
         for(ExampleItem m : selected.meals) {
             LayoutInflater layoutInflater = calendar.getLayoutInflater();
             View content = layoutInflater.inflate(R.layout.remove_meal, null, false);
@@ -166,6 +165,27 @@ public class Month {
             t1.setText(m.getLine1());
             TextView t2 = (TextView)content.findViewById(R.id.textView2);
             t2.setText(m.getLine2());
+
+            log.addView(content);
+        }
+        for(ExampleItem r : selected.reminders) {
+            LayoutInflater layoutInflater = calendar.getLayoutInflater();
+            View content = layoutInflater.inflate(R.layout.remove_meal, null, false);
+
+            Button remove = (Button)content.findViewById(R.id.remove);
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selected.reminders.remove(r);
+                    log.removeView(content);
+                    if(selected.reminders.size() == 0 && selected.workouts.size() == 0 && selected.meals.size() == 0)
+                        selected.logged = false;
+                }
+            });
+            TextView t1 = (TextView)content.findViewById(R.id.textView1);
+            t1.setText(r.getLine1());
+            TextView t2 = (TextView)content.findViewById(R.id.textView2);
+            t2.setText(r.getLine2());
 
             log.addView(content);
         }
