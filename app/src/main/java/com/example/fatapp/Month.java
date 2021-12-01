@@ -201,7 +201,14 @@ public class Month {
             case 11:
                 return 31;
             case 1:
-                return (year%4 == 0) ? 29 : 28;
+                if(year%4 != 0)
+                    return 28;
+                else if (year%100 != 0)
+                    return 29;
+                else if (year%400 != 0)
+                    return 28;
+                else
+                    return 29;
             case 3:
             case 5:
             case 8:

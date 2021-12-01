@@ -162,7 +162,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/reminder_image"
-                app:backgroundTint="@color/black" />
+                app:backgroundTint="@color/purple_500" />
         </RelativeLayout>
 
         <View
@@ -182,7 +182,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/meal_plan"
-                app:backgroundTint="@color/black"
+                app:backgroundTint="@color/purple_500"
                 tools:layout_editor_absoluteX="294dp"
                 tools:layout_editor_absoluteY="36dp" />
         </RelativeLayout>
@@ -204,7 +204,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/workout_image"
-                app:backgroundTint="@color/black"
+                app:backgroundTint="@color/purple_500"
                 tools:layout_editor_absoluteX="197dp"
                 tools:layout_editor_absoluteY="65dp" />
         </RelativeLayout>
