@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/textMonth"
         android:layout_width="385dp"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintVertical_bias="0.858" />
 
     <TableRow
         android:id="@+id/tableRow"
@@ -214,24 +214,24 @@
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="2dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="7dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow"
+        app:layout_constraintBottom_toTopOf="@+id/textMonth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <View
         android:id="@+id/divider4"
         android:layout_width="409dp"
         android:layout_height="2dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="5dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/dayTable"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textMonth" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
