@@ -2,7 +2,6 @@ package com.example.fatapp;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,18 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputListener{
@@ -38,7 +31,7 @@ public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
          @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.mealplan, container, false);
+        View view = inflater.inflate(R.layout.mealplan_dialog, container, false);
         buildRecyclerView(view);
         setInsertButton(view);
         onViewStateRestored(savedInstanceState);

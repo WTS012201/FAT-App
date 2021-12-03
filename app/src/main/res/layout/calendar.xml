@@ -133,6 +133,7 @@
             android:layout_marginBottom="5dp"
             android:fillViewport="true">
             <LinearLayout
+                android:animateLayoutChanges="true"
                 android:id="@+id/logLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

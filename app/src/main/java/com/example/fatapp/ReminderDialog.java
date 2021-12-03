@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +32,7 @@ public class ReminderDialog extends DialogFragment implements ReminderAdapter.On
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.mealplan, container, false);
+        View view = inflater.inflate(R.layout.mealplan_dialog, container, false);
         EditText entryHour = (EditText) view.findViewById(R.id.edittext_line_1);
         EditText entryMin = (EditText)  view.findViewById(R.id.edittext_line_2);
         entryHour.setHint("Hour");

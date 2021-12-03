@@ -267,7 +267,7 @@ public class WorkoutDialog extends DialogFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
              @Nullable Bundle savedInstanceState) {
         onViewStateRestored(savedInstanceState);
-        workoutView = inflater.inflate(R.layout.dialog_fragment, container, false);
+        workoutView = inflater.inflate(R.layout.workout_dialog, container, false);
         LinearLayout workouts = (LinearLayout) workoutView.findViewById(R.id.workouts);
         Button newWorkout = (Button)workoutView.findViewById(R.id.new_workout);
 
