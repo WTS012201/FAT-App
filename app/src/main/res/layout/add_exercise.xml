@@ -31,15 +31,20 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/remove"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:text="-"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        app:backgroundTint="@color/gray" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/day_button_normal"
+                        android:padding="5dp">
+                        <Button
+                            android:id="@+id/remove"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/remove"
+                            android:backgroundTint="@color/gray"
+                            app:backgroundTint="@color/purple_500"
+                            android:textAllCaps="false"/>
+                    </LinearLayout>
 
                     <Space
                         android:layout_width="5dp"

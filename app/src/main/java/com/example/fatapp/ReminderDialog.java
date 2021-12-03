@@ -100,6 +100,7 @@ public class ReminderDialog extends DialogFragment implements ReminderAdapter.On
     @Override
     public void addReminder(ExampleItem reminder) {
         mOnInputListener.logReminder(reminder);
+        dismiss();
     }
 
     public interface OnInputListener{

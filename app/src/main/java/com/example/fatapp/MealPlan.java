@@ -90,6 +90,7 @@ public class MealPlan extends DialogFragment implements ExampleAdapter.OnInputLi
     @Override
     public void addMeal(ExampleItem meal) {
         mOnInputListener.logMeal(meal);
+        dismiss();
     }
 
     public interface OnInputListener{

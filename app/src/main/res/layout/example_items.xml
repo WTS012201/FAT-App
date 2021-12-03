@@ -13,15 +13,22 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
-            <Button
-                android:id="@+id/remove"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="-"
-                android:textSize="30dp" />
             <LinearLayout
-                android:layout_width="254dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/day_button_normal"
+                android:padding="5dp">
+                <Button
+                    android:id="@+id/remove"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/remove"
+                    android:backgroundTint="@color/gray"
+                    app:backgroundTint="@color/purple_500"
+                    android:textAllCaps="false"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="235dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:orientation="vertical">
@@ -44,12 +51,18 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <Button
-                android:id="@+id/add"
-                android:layout_width="40dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:text="+"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/day_button_normal"
+                android:padding="5dp">
+                <Button
+                    android:id="@+id/add"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/add"
+                    android:backgroundTint="@color/gray"
+                    app:backgroundTint="@color/purple_500"/>
+            </LinearLayout>
         </LinearLayout>
 </androidx.cardview.widget.CardView>
