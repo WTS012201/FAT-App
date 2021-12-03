@@ -116,7 +116,6 @@ public class Month {
                 calendarButtons.add(button);
             }
         }
-        System.out.println(count);
         if(count == 5){
             TableRow tableRow = new TableRow(calendar);
             table.addView(tableRow);
@@ -132,8 +131,6 @@ public class Month {
         View div = (View)calendar.findViewById(R.id.logDivider);
         log.removeAllViews();
         log.addView(div);
-
-        System.out.println(selected.label);
 
         for(Workout w : selected.workouts) {
             LayoutInflater layoutInflater = calendar.getLayoutInflater();

@@ -10,12 +10,14 @@ public class Exercise {
     public ArrayList<View> setLayouts = new ArrayList<View>();
     public View exerciseLayout;
     public String name;
+    public int eid;
 
+    public Exercise(View view, int eid){
+        this.exerciseLayout = view;
+        this.eid = eid;
+    }
     public void addSet(int reps, int weight){
         sets.add(new Pair(reps, weight));
-    }
-    public void removeSet(int idx) {
-        sets.remove(idx);
     }
     public void setName(String name){ this.name = name;}
 
