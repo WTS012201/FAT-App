@@ -31,25 +31,28 @@
             android:layout_height="45dp" />
 
         <TextView
-            android:background="@color/gray"
+            android:background="@drawable/rounded_left"
+            android:backgroundTint="@color/gray"
             android:id="@+id/textView1"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:minHeight="45dp"
+            android:minHeight="40dp"
             android:textSize="18dp"
             android:text="TextView"
+            android:gravity="center"
             android:textColor="@color/black"/>
         <TextView
-            android:background="@color/gray"
+            android:background="@drawable/rounded_right"
+            android:backgroundTint="@color/gray"
             android:id="@+id/textView2"
-            android:minHeight="45dp"
+            android:minHeight="40dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="18dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:gravity="center"
             android:textColor="@color/black"/>
 
     </LinearLayout>

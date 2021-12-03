@@ -115,31 +115,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/logView"
-        android:layout_width="385dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="3dp"
-        android:fillViewport="true"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/log"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dayTable"
         app:layout_constraintVertical_bias="1.0">
-
-        <LinearLayout
-            android:id="@+id/logLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/logDivider"
+        <ScrollView
+            android:id="@+id/logView"
+            android:layout_width="385dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="5dp"
+            android:fillViewport="true">
+            <LinearLayout
+                android:id="@+id/logLayout"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="?android:attr/listDivider" />
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"

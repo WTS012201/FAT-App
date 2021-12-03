@@ -128,9 +128,7 @@ public class Month {
     }
     public void generateLog(Calendar cal){
         LinearLayout log = (LinearLayout) calendar.findViewById(R.id.logLayout);
-        View div = (View)calendar.findViewById(R.id.logDivider);
         log.removeAllViews();
-        log.addView(div);
 
         for(Workout w : selected.workouts) {
             LayoutInflater layoutInflater = calendar.getLayoutInflater();

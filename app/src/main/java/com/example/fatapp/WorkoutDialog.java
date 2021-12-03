@@ -95,6 +95,8 @@ public class WorkoutDialog extends DialogFragment{
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(nameEntry.getText().toString().isEmpty())
+                    return;
                 newWorkout.setName(nameEntry.getText().toString());
                 newWorkout.setNotes(notesEntry.getText().toString());
                 if(timeEntry.getText().toString().isEmpty())
