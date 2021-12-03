@@ -134,6 +134,7 @@ public class Month {
         log.addView(div);
 
         System.out.println(selected.label);
+
         for(Workout w : selected.workouts) {
             LayoutInflater layoutInflater = calendar.getLayoutInflater();
             View content = layoutInflater.inflate(R.layout.remove, null, false);
