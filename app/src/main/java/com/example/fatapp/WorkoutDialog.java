@@ -37,9 +37,7 @@ public class WorkoutDialog extends DialogFragment{
 
     public interface OnInputListener{
         void logWorkout(Workout workout);
-
         void logMeal(ExampleItem meal);
-
         void keep(Calendar calendar);
     }
 
@@ -78,7 +76,7 @@ public class WorkoutDialog extends DialogFragment{
 
     public OnInputListener mOnInputListener;
 
-    public void getBottom(Workout newWorkout){
+    public void genBottom(Workout newWorkout){
         bottom = new LinearLayout(getActivity());
         bottom.setGravity(Gravity.CENTER);
 
@@ -102,6 +100,8 @@ public class WorkoutDialog extends DialogFragment{
                     newWorkout.setTime(0);
                 else
                     newWorkout.setTime(Integer.parseInt(timeEntry.getText().toString()));
+                if(calendar.workouts.contains(workout))
+                    calendar.workouts.remove(workout);
                 calendar.workouts.add(newWorkout);
                 inputWorkout.removeAllViews();
 
@@ -194,6 +194,10 @@ public class WorkoutDialog extends DialogFragment{
                 newExercise.exerciseLayout = exerciseEntry;
                 newWorkout.exercises.add(newExercise);
                 inputWorkout.addView(exerciseEntry);
+
+                inputWorkout.removeView(addExercise);
+                genExercise(newWorkout);
+                inputWorkout.addView(addExercise);
                 inputWorkout.removeView(bottom);
                 inputWorkout.addView(bottom);
             }
@@ -206,7 +210,7 @@ public class WorkoutDialog extends DialogFragment{
         Workout newWorkout = new Workout();
         getTop();
         genExercise(newWorkout);
-        getBottom(newWorkout);
+        genBottom(newWorkout);
 
         inputWorkout.addView(addExercise);
         inputWorkout.addView(bottom);
@@ -223,7 +227,7 @@ public class WorkoutDialog extends DialogFragment{
         timeEntry.setText(Integer.toString(workout.time));
 
         genExercise(newWorkout);
-        getBottom(newWorkout);
+        genBottom(newWorkout);
 
         for(Exercise e : workout.exercises){
             if(e.exerciseLayout.getParent() != null)
@@ -244,7 +248,7 @@ public class WorkoutDialog extends DialogFragment{
                 setTable.addView(v);
             }
         }
-
+        inputWorkout.addView(addExercise);
         inputWorkout.addView(bottom);
     }
 
